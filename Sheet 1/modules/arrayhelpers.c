@@ -53,3 +53,60 @@ void free_array_2d_t (array_2d_t* array) {
 	free (array->data);
 	free (array);
 }
+void output_array_1d_t(array_1d_t* array, char* fileName)
+{
+	printf("outputing...\n");
+	FILE* data;
+	data = fopen(fileName, "a");
+	if (data == NULL) {
+		printf("Error during opening the document!\n");
+	}
+
+	for (size_t i = 0; i < array->length; i++) {
+		fprintf(data, "%lf\n ", array->data[i]);
+	}
+	fclose(data);
+
+	printf("Output completed, now you can check your %s.\n", fileName);
+}
+void output_array_2d_t(array_2d_t* array, char* fileName)
+{
+	printf("outputing...\n");
+	FILE* data;
+	data = fopen(fileName, "a");
+
+	if (data == NULL) {
+		printf("Error during opening the document!\n");
+	}
+
+	for (size_t i = 0; i < array->num_rows; i++) {
+		for (size_t j = 0; j < array->num_cols; j++) {
+			fprintf(data, "%lf ", array->data[i][j]);
+		}
+		fprintf(data, "\n");
+	}
+	fclose(data);
+
+	printf("Output completed, now you can check your %s.\n", fileName);
+}
+
+double compute_mean(array_1d_t* array)
+{
+	double sum = 0, mean;
+	for (size_t i = 0; i < array->length; i++) {
+		sum = sum + array->data[i];
+	}
+	mean = sum / array->length;
+	return mean;
+}
+
+double compute_variance(array_1d_t* array)
+{	
+	double temp = 0, sum = 0;
+	double mean = compute_mean(array); 
+	for (size_t i = 0; i < array->length; i++) {
+		temp = pow(array->data[i] - mean, 2);
+		sum = sum + temp;
+	}
+	return sum / array->length;
+}
