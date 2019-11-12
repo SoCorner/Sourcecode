@@ -136,18 +136,19 @@ double estimation_error (double given_standard_deviation, array_1d_t* samples, s
 	return fabs (given_standard_deviation - estimated_sigma);
 }
 
-array_1d_t* draw_wiener_process (double my, double sigma, double delta_t, double T, gsl_rng* rng) {
+// I just find out we need't to use sigma and my
+array_1d_t* draw_wiener_process(double delta_t, double T, gsl_rng* rng) {
 	array_1d_t* wiener;
 	const size_t num_points = (size_t)(T / delta_t) + 1;
-	const double root_delta = sqrt (delta_t);
+	const double root_delta = sqrt(delta_t);
 
-	wiener = create_array_1d_t (num_points);
+	wiener = create_array_1d_t(num_points);
 	if (wiener == NULL) return NULL;
 
 	wiener->data[0] = 0.0;
-	for (size_t i = 1; i < num_points; ++i) {
+	for (size_t i = 1; i < num_points+1; ++i) {
 		/* we use that the Wiener increment is distributed with N(0,delt_t) */
-		wiener->data[i] = wiener->data[i - 1] + root_delta * gsl_ran_ugaussian (rng);
+		wiener->data[i] = wiener->data[i - 1] + root_delta * gsl_ran_ugaussian(rng);
 	}
 	return wiener;
 }

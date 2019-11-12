@@ -65,9 +65,11 @@ double estimate_sigma (array_1d_t* samples, size_t num_samples);
 
 double estimation_error (double given_standard_deviation, array_1d_t* samples, size_t num_samples);
 
-array_1d_t* draw_wiener_process (double my, double sigma, double delta_t, double T, gsl_rng* rng);
+array_1d_t* draw_wiener_process(double delta_t, double T, gsl_rng* rng);
 
 array_1d_t* draw_gbm (double s_0, double my, double sigma, double delta_t, double T, array_1d_t* wiener);
+
+double draw_payoff(double K, double T, double delt, array_1d_t* wiener);
 
 double estimate_sigma_gbm (array_1d_t* gbm, double timestep);
 
