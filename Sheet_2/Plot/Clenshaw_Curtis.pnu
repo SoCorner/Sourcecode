@@ -1,0 +1,13 @@
+set term pdf lw 2 font "Times New Roman, 8"
+set xlabel "i-te point" font "Times New Roman, 12"
+set ylabel "Value" font "Times New Roman, 12"
+set title "Clenshaw Curtis" font "Times New Roman, 12"
+set xtics 0, 1, 31
+set output "task8.pdf"
+set grid
+plot "test8_1.txt"  u 1:2 w p pt 1 lc 1 title "l=1",\
+"test8_2.txt"  u 1:2 w p pt 1 lc 2 title "l=2",\
+"test8_3.txt"  u 1:2 w p pt 1 lc 3 title "l=3",\
+"test8_4.txt"  u 1:2 w p pt 1 lc 4 title "l=4",\
+"test8_5.txt"  u 1:2 w p pt 1 lc 5 title "l=5"
+set output
