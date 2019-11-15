@@ -17,6 +17,8 @@ typedef struct quadrature {
 quadrature_t* create_quadrature(size_t length);
 void free_quadrature(quadrature_t* quadrature);
 
+void output_quadrature(quadrature_t* quadrature, char*fileName);
+
 //implementation 
 
 quadrature_t* clenshaw_curtis(int l);
