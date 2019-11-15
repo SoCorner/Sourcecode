@@ -56,3 +56,13 @@ void sheet2_task2(int seed) {
 	free_array_1d_t(payoff);
 	output_array_2d_t(output_task2, file_task2);
 }
+
+void sheet2_task8(int l)
+{
+	
+	char* fileName = "task8.txt";
+	quadrature_t* output = clenshaw_curtis(l);
+	output_quadrature(output, fileName);
+
+
+}
