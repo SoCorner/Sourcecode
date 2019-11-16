@@ -7,6 +7,7 @@
 #include <gsl/gsl_randist.h>
 #include "arrayhelpers.h"
 
+#define M_PI 3.14159265359
 /* Start: preprocessor macros for Moro's algorithm NormalCDF */
 #define A0 0.398942270991
 #define A1 0.020133760596
@@ -43,36 +44,36 @@
 #define G8 0.0000003960315187
 /* End: preprocessor macros for Moro's algorithm NormalInverseCDF */
 
-double draw_uniform_rv_a_b (double a, double b, gsl_rng* random_number_generator);
+double draw_uniform_rv_a_b(double a, double b, gsl_rng * random_number_generator);
 
-double rejection_sampling_standard_normal (double a, double b, gsl_rng* random_number_generator);
+double rejection_sampling_standard_normal(double a, double b, gsl_rng* random_number_generator);
 
-double NormalCDF (double x);
+double NormalCDF(double x);
 
-double NormalInverseCDF (double x);
+double NormalInverseCDF(double x);
 
-double draw_standard_normal_rv (gsl_rng* random_number_generator);
+double draw_standard_normal_rv(gsl_rng* random_number_generator);
 
-array_2d_t* draw_standard_normal_box_muller (gsl_rng* rng, size_t num_samples);
+array_2d_t* draw_standard_normal_box_muller(gsl_rng* rng, size_t num_samples);
 
-double draw_normal_rv (double mean, double standard_deviation, gsl_rng* rng);
+double draw_normal_rv(double mean, double standard_deviation, gsl_rng* rng);
 
-array_1d_t* generate_normal_rv_samples (double mean, double standard_deviation, gsl_rng* rng, size_t num_samples);
+array_1d_t* generate_normal_rv_samples(double mean, double standard_deviation, gsl_rng* rng, size_t num_samples);
 
-double estimate_sigma_naively (array_1d_t* samples, double mean);
+double estimate_sigma_naively(array_1d_t* samples, double mean);
 
-double estimate_sigma (array_1d_t* samples, size_t num_samples);
+double estimate_sigma(array_1d_t* samples, size_t num_samples);
 
-double estimation_error (double given_standard_deviation, array_1d_t* samples, size_t num_samples);
+double estimation_error(double given_standard_deviation, array_1d_t* samples, size_t num_samples);
 
 array_1d_t* draw_wiener_process(double delta_t, double T, gsl_rng* rng);
 
-array_1d_t* draw_gbm (double s_0, double my, double sigma, double delta_t, double T, array_1d_t* wiener);
+array_1d_t* draw_gbm(double s_0, double my, double sigma, double delta_t, double T, array_1d_t* wiener);
 
-double draw_payoff(double K, double T, double delt, array_1d_t* wiener);
+double draw_payoff(double K, array_1d_t* wiener);
 
-double estimate_sigma_gbm (array_1d_t* gbm, double timestep);
+double estimate_sigma_gbm(array_1d_t* gbm, double timestep);
 
-double estimate_mu_gbm (array_1d_t* gbm, double timestep, double sigma);
+double estimate_mu_gbm(array_1d_t* gbm, double timestep, double sigma);
 
 #endif

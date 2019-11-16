@@ -32,7 +32,7 @@ void output_quadrature(quadrature_t* quadrature, char* fileName)
 		printf("Error during opening the document!\n");
 	}
 	for (size_t i = 0; i < quadrature->length; i++) {
-		fprintf(data, "%lf %lf\n", quadrature->weights[i], quadrature->nodes[i]);
+		fprintf(data, "%i %lf %lf\n", i+1, quadrature->nodes[i], quadrature->weights[i]);
 	}
 	fprintf(data, "\n");
 	fclose(data);
