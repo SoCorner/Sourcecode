@@ -14,13 +14,13 @@ array_1d_t* sheet2_task_1_2_helper(double sigma, double delta_t, int seed)
 	array_1d_t* gbm_discr, * bm_discr;
 
 	for (size_t i = 0; i < num_points; i++) {
-		gsl_rng_set(rng, seed + i);
+		gsl_rng_set(rng, seed+i);
 		bm_discr = draw_wiener_process(delta_t, T, rng);
 		gbm_discr = draw_gbm(s_0, my, sigma, delta_t, T, bm_discr);
-		payoff->data[i] = draw_payoff(K, T, delta_t, gbm_discr);
+		payoff->data[i] = draw_payoff(K,gbm_discr);
 	}
-	free_array_1d_t(gbm_discr);
-	free_array_1d_t(bm_discr);
+	//free_array_1d_t(gbm_discr);
+	//free_array_1d_t(bm_discr);
 	return payoff;
 }
 
@@ -60,7 +60,8 @@ void sheet2_task2(int seed) {
 void sheet2_task8(int l)
 {
 	
-	char* fileName = "task8.txt";
+	char* fileName = malloc(sizeof(char*) * 255);
+	sprintf(fileName, "test8_%i.txt", l);
 	quadrature_t* output = clenshaw_curtis(l);
 	output_quadrature(output, fileName);
 
