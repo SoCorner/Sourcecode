@@ -1,6 +1,6 @@
 set term pdf lw 2 font "Times New Roman, 8"
-set xlabel "i-te point" font "Times New Roman, 12"
-set ylabel "Value" font "Times New Roman, 12"
+set xlabel "i-th point" font "Times New Roman, 12"
+set ylabel "Nodes" font "Times New Roman, 12"
 set title "Clenshaw Curtis" font "Times New Roman, 12"
 set xtics 0, 1, 31
 set output "task8.pdf"
