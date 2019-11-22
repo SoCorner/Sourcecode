@@ -1,0 +1,9 @@
+set term pdf lw 2 font "Times New Roman, 8"
+set xlabel "sigma" font "Times New Roman, 12"
+set ylabel "Mean" font "Times New Roman, 12"
+set title "Mean estimate against sigma" font "Times New Roman, 12"
+set xtics 0, 0.2, 0.8
+set grid
+set output "task1.pdf"
+plot "task1.txt"  w p pt 1 lc 1 title "mean value"
+set output
